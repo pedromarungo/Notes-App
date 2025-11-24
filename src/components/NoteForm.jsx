@@ -1,14 +1,15 @@
-import React from "react";
-import { useState } from "react";
-import TextInput from "./inputs/TextInput";
-import SelectInput from "./inputs/SelectInput";
+import React from 'react';
+import { useState } from 'react';
+import TextInput from './inputs/TextInput';
+import SelectInput from './inputs/SelectInput';
+import TextAreaInput from './inputs/TextAreaInput';
 
 function NoteForm({ notes, setNotes }) {
   const [formData, setFormData] = useState({
-    title: "",
-    category: "Work",
-    priority: "Medium",
-    description: "",
+    title: '',
+    category: 'Work',
+    priority: 'Medium',
+    description: '',
   });
 
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -32,10 +33,10 @@ function NoteForm({ notes, setNotes }) {
 
     // reset form data
     setFormData({
-      title: "",
-      category: "Work",
-      priority: "Medium",
-      description: "",
+      title: '',
+      category: 'Work',
+      priority: 'Medium',
+      description: '',
     });
   };
 
@@ -43,56 +44,51 @@ function NoteForm({ notes, setNotes }) {
     <>
       <button
         onClick={() => setIsFormVisible(!isFormVisible)}
-        className="w-full bg-gray-100 border border-gray-300 text-purple-800 py-2 rounded-lg cursor-pointer hover:bg-purple-200 hover:border-purple-300 transition mb-4"
+        className='w-full bg-gray-100 border border-gray-300 text-purple-800 py-2 rounded-lg cursor-pointer hover:bg-purple-200 hover:border-purple-300 transition mb-4'
       >
-        {isFormVisible ? "Hide Form" : "Add New Note"}
+        {isFormVisible ? 'Hide Form' : 'Add New Note'}
       </button>
       {isFormVisible && (
-        <form onSubmit={handleSubmit} className="mb-6">
+        <form onSubmit={handleSubmit} className='mb-6'>
           <TextInput
-            label="Title"
-            name="title"
+            label='Title'
+            name='title'
             value={formData.title}
             onChange={handleChange}
             required
           />
 
           <SelectInput
-            label="Priority"
-            name="priority"
+            label='Priority'
+            name='priority'
             value={formData.priority}
             onChange={handleChange}
             options={[
-              { value: "High", label: "High" },
-              { value: "Medium", label: "Medium" },
-              { value: "Low", label: "low" },
+              { value: 'High', label: 'High' },
+              { value: 'Medium', label: 'Medium' },
+              { value: 'Low', label: 'low' },
             ]}
           />
           <SelectInput
-            label="Category"
-            name="category"
+            label='Category'
+            name='category'
             value={formData.category}
             onChange={handleChange}
             options={[
-              { value: "Groceries", label: "Groceries" },
-              { value: "Essentials", label: "Essentials" },
-              { value: "Wishlist", label: "Wishlist" },
+              { value: 'Groceries', label: 'Groceries' },
+              { value: 'Essentials', label: 'Essentials' },
+              { value: 'Wishlist', label: 'Wishlist' },
             ]}
           />
+          <TextAreaInput
+            label='Description'
+            name='description'
+            value={formData.description}
+            onChange={handleChange}
+            required
+          />
 
-          <div className="mb-4">
-            <label htmlFor="description" className="block font-semibold">
-              Description
-            </label>
-            <textarea
-              name="description"
-              type="text"
-              className="w-full p-2 border rounded-lg"
-              value={formData.description}
-              onChange={handleChange}
-            ></textarea>
-          </div>
-          <button className="w-full bg-purple-500 text-white py-2 rounded-lg cursor-pointer hover:bg-purple-600">
+          <button className='w-full bg-purple-500 text-white py-2 rounded-lg cursor-pointer hover:bg-purple-600'>
             Create Note
           </button>
         </form>
